@@ -17,9 +17,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true)
-    private String username;
+    private String username; // 로그인 아이디
     private String password;
-    private String fullname;
+    private String fullname; // 직접적인 이름
 
     @CreationTimestamp // pc -> db (날짜주입)
     private LocalDateTime createdAt;
