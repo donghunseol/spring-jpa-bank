@@ -10,6 +10,10 @@ server:
   port: 8080
 
 spring:
+#  # test 코드에서는 반영이 안되는듯 하다!
+#  jackson:
+#    serialization:
+#      fail-on-empty-beans: false # JSON 으로 변환 할때 비어 있는 객체를 변환 하더라도 fail-on-empty-beans 이 비활성화
   datasource:
     url: jdbc:h2:mem:test;MODE=MySQL # H2 데이터베이스를 메모리 모드로 사용하고, MySQL 호환 모드를 활성화
     driver-class-name: org.h2.Driver
@@ -24,7 +28,7 @@ spring:
     properties:
       '[hibernate.default_batch_fetch_size]': 100 # 쿼리 성능 최적화를 위한 배치 크기 설정
       '[hibernate.format_sql]': true # SQL 포맷팅 활성화로 가독성 향상
-    show-sql: true # JPA를 통해 실행되는 SQL 로그를 출력하여 디버깅 용이성 향상
+    show-sql: true # JPA 를 통해 실행되는 SQL 로그를 출력하여 디버깅 용이성 향상
     defer-datasource-initialization: true # 이거 준거임
     open-in-view: false
   sql:
@@ -34,5 +38,5 @@ spring:
 
 logging:
   level:
-    '[com.example.bank]': DEBUG # 애플리케이션의 디버깅을 위해 로그 레벨을 DEBUG로 설정
-    '[org.hibernate.orm.jdbc.bind]': TRACE # Hibernate의 SQL 바인딩 로그를 TRACE 레벨로 설정하여 상세한 로깅 가능
+    '[com.example.bank]': DEBUG # 애플리케이션의 디버깅을 위해 로그 레벨을 DEBUG 로 설정
+    '[org.hibernate.orm.jdbc.bind]': TRACE # Hibernate 의 SQL 바인딩 로그를 TRACE 레벨로 설정하여 상세한 로깅 가능

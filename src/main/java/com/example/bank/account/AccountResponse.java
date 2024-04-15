@@ -3,6 +3,7 @@ package com.example.bank.account;
 import com.example.bank.history.History;
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class AccountResponse {
         private Integer number;
         private Long balance; // 현재 계좌 잔액
 
-        private List<HistoryDTO> histories = new ArrayList<>();
+        private List<HistoryDTO> histories;
 
         public DetailDTO(Account account, List<History> historyList, int searchNumber) {
             this.userId = account.getUser().getId();
@@ -78,6 +79,26 @@ public class AccountResponse {
                 this.number = account.getNumber();
                 this.balance = account.getBalance();
             }
+        }
+    }
+
+    // 계좌 이체 응답 화면
+    @Data
+    public static class TransferDTO {
+        private Long historyId; // history id
+        private Integer senderNumber; // 주는 사람 계좌 번호
+        private Integer receiverNumber; // 받는 사람 계좌 번호
+        private Long amount; // 이체 금액
+        private Long myBalance; // 주는 사람 잔액
+        private Timestamp createdAt;
+
+        public TransferDTO(History history) {
+            this.historyId = history.getId();
+            this.senderNumber = history.getSender().getNumber();
+            this.receiverNumber = history.getReceiver().getNumber();
+            this.amount = history.getAmount();
+            this.myBalance = history.getSenderBalance();
+            this.createdAt = history.getCreatedAt();
         }
     }
 }
